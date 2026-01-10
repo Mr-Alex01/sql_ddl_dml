@@ -39,7 +39,7 @@
 
 `Memcached установлен и запущен:`
 
-![2](https://github.com/Mr-Alex01/zabbix/blob/main/img/2.jpg)
+![2](https://github.com/Mr-Alex01/redis_memcached/blob/main/img/2.jpg)
 
 ---
 
@@ -47,7 +47,7 @@
 
 `Записал в memcached свои ключи и значения с TTL 5. Результат после завершения TTL:`
 
-![3](https://github.com/Mr-Alex01/zabbix/blob/main/img/3.jpg)
+![3](https://github.com/Mr-Alex01/redis_memcached/blob/main/img/3.jpg)
 
 ---
 
@@ -55,4 +55,4 @@
 
 `Установил Redis, записал в словарь базы свои ключи и значения. По отдельности вытащил их:`
 
-![4](https://github.com/Mr-Alex01/zabbix/blob/main/img/4.jpg)
+![4](https://github.com/Mr-Alex01/redis_memcached/blob/main/img/4.jpg)
