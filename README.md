@@ -72,8 +72,6 @@ WHERE TABLE_SCHEMA = 'sakila'
 GROUP BY TABLE_NAME  
 ORDER BY TABLE_NAME;  
 
-P.S. "Название таблицы" и "Название первичного ключа"
-
 `В Excel отобразил полученную таблицу:`
 
 ![4](https://github.com/Mr-Alex01/sql_ddl_dml/blob/main/img/4.jpg)
