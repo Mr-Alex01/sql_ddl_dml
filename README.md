@@ -1,4 +1,4 @@
-# Домашнее задание к занятию "`ELK`" - `Столяренко Александр`
+# Домашнее задание к занятию "`Работа с данными (DDL/DML)`" - `Столяренко Александр`
 
 
 ### Инструкция по выполнению домашнего задания
@@ -24,33 +24,54 @@
 
 ### Задание 1
 
-`Через docker-compose разворачивал все инструменты из д/з для работы`  
+`Через docker разворачивал mysql8`  
 
-`Установил и запустил Elasticsearch. Заменил параметр на имя своего пользователя и возраст:`
+`Выполнил запрос на получение списка пользователей в базе данных:`
 
-![1](https://github.com/Mr-Alex01/elk/blob/main/img/1.jpg)
+![1](https://github.com/Mr-Alex01/sql_ddl_dml/blob/main/img/1.jpg)
 
+`Затем выполнил запрос на получение списка прав для пользователя sys_temp:`
+
+![2](https://github.com/Mr-Alex01/sql_ddl_dml/blob/main/img/2.jpg)
+
+`И использовал команду для получения всех таблиц базы данных после восстановленного дампа:`
+
+![3](https://github.com/Mr-Alex01/sql_ddl_dml/blob/main/img/3.jpg)
+
+`Простыню из команд пришлось использовать такую:`
+
+`CREATE USER 'sys_temp'@'%' IDENTIFIED BY 'password';`
+
+`SELECT user, host FROM mysql.user;`
+
+`GRANT ALL PRIVILEGES ON *.* TO 'sys_temp'@'%' WITH GRANT OPTION;`  
+`FLUSH PRIVILEGES;`
+
+`SHOW GRANTS FOR 'sys_temp'@'%';`
+
+`ALTER USER 'sys_temp'@'%' IDENTIFIED WITH mysql_native_password BY 'password';`
+
+`SELECT USER();`
+
+`USE sakila;`  
+`SHOW TABLES;`
 
 ---
 
 ### Задание 2
 
-`Установил и запустил Kibana. Там в консоли выполнил запрашиваемый запрос и увидел тот же результат как и ранее:`
+`Нашёл такую возможность использовать многосоставной Primary Key, чтобы вытащить нужную информацию:`
 
-![2](https://github.com/Mr-Alex01/elk/blob/main/img/2.jpg)
+SELECT 
+    TABLE_NAME AS `Название таблицы`,
+    GROUP_CONCAT(COLUMN_NAME ORDER BY ORDINAL_POSITION SEPARATOR ', ') 
+        AS `Название первичного ключа`
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE TABLE_SCHEMA = 'sakila'
+  AND CONSTRAINT_NAME = 'PRIMARY'
+GROUP BY TABLE_NAME
+ORDER BY TABLE_NAME;
 
----
+В Excel отобразил полученную таблицу:
 
-### Задание 3
-
-`Установил и запустил Logstash и Nginx. Logstash-ом отправил логи nginx в elasticsearch и отобразил в kibana:`
-
-![3](https://github.com/Mr-Alex01/elk/blob/main/img/3.jpg)
-
----
-
-### Задание 4
-
-`Установил и запустил Filebeat. Перетянул логи nginx с logstash-а на filebeat. В kibana на это указал:`
-
-![4](https://github.com/Mr-Alex01/elk/blob/main/img/4.jpg)
+![4](https://github.com/Mr-Alex01/sql_ddl_dml/blob/main/img/4.jpg)
