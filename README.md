@@ -62,15 +62,15 @@
 
 `Нашёл такую возможность использовать многосоставной Primary Key, чтобы вытащить нужную информацию:`
 
-SELECT 
-    TABLE_NAME AS `Название таблицы`,
-    GROUP_CONCAT(COLUMN_NAME ORDER BY ORDINAL_POSITION SEPARATOR ', ') 
-        AS `Название первичного ключа`
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE TABLE_SCHEMA = 'sakila'
-  AND CONSTRAINT_NAME = 'PRIMARY'
-GROUP BY TABLE_NAME
-ORDER BY TABLE_NAME;
+SELECT  
+    TABLE_NAME AS `Название таблицы`,  
+    GROUP_CONCAT(COLUMN_NAME ORDER BY ORDINAL_POSITION SEPARATOR ', ')  
+        AS `Название первичного ключа`  
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE  
+WHERE TABLE_SCHEMA = 'sakila'  
+  AND CONSTRAINT_NAME = 'PRIMARY'  
+GROUP BY TABLE_NAME  
+ORDER BY TABLE_NAME;  
 
 В Excel отобразил полученную таблицу:
 
